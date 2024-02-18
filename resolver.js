@@ -40,7 +40,7 @@ export const resolvers = {
                 if(!mongoose.Types.ObjectId.isValid(id)) {
                     throw new Error('Invalid Game ID');
                 }
-                const game = await Game.findById({id: _id});
+                const game = await Game.findById(id);
                 if(!game){
                     throw new Error('Game not found');
                 }
@@ -56,7 +56,7 @@ export const resolvers = {
                 if(!mongoose.Types.ObjectId.isValid(id)) {
                     throw new Error('Invalid Author ID');
                 }
-                const author = await Author.findById({id: _id});
+                const author = await Author.findById(id);
                 if(!author){
                     throw new Error('Author not found');
                 }
@@ -72,7 +72,7 @@ export const resolvers = {
                 if(!mongoose.Types.ObjectId.isValid(id)) {
                     throw new Error('Invalid Review ID');
                 }
-                const review = await Review.findById({id: _id});
+                const review = await Review.findById(id);
                 if(!review){
                     throw new Error('Review not found');
                 }
