@@ -26,28 +26,45 @@ export const typeDefs = `#graphql
     }
     type Mutation{
         # addGame is a mutation that will add a game to the database
-        addGame(game: addGameInput!): Game
-        addAuthor(author: addAuthorInput!): Author
-        addReview(review: addReviewInput!): Review
+        addGame(game: AddGameInput!): Game
+        addAuthor(author: AddAuthorInput!): Author
+        addReview(review: AddReviewInput!): Review
 
         # deleteGame is a mutation that will delete a game from the database
         deleteGame(id: ID!): Game
         deleteAuthor(id: ID!): Author
         deleteReview(id: ID!): Review
+
+        # updateGame is a mutation that will update a game in the database
+        updateGame(id: ID!, game: EditGameInput!): Game
+        updateAuthor(id: ID!, author: EditAuthorInput!): Author
+        updateReview(id: ID!, review: EditReviewInput!): Review
     }
-    input addGameInput{
+    input AddGameInput{
         title: String!
         platform: [String!]!
     }
-    input addAuthorInput{
+    input AddAuthorInput{
         name: String!
         verified: Boolean!
     }
-    input addReviewInput{
+    input AddReviewInput{
         rating: Int!
         content: String!
         gameId: ID!
         authorId: ID!
+    }
+    input EditGameInput{
+        title: String
+        platform: [String!]
+    }
+    input EditAuthorInput{
+        name: String
+        verified: Boolean
+    }
+    input EditReviewInput{
+        rating: Int
+        content: String
     }
 `
 

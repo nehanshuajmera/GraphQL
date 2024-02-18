@@ -210,6 +210,36 @@ export const resolvers = {
                 console.error("Error deleting review:", error.message);
                 throw new Error("Failed to delete review");
             }
+        },
+        updateGame: async(_, {id, game})=>{
+            try{
+                const updateGame = await Game.findByIdAndUpdate(id, game, {new: true});
+                return updateGame;
+            }
+            catch(err){
+                console.error("Error updating game:", error.message);
+                throw new Error("Failed to update game");
+            }
+        },
+        updateAuthor: async(_, {id, author})=>{
+            try{
+                const updateAuthor = await Author.findByIdAndUpdate(id, author, {new: true});
+                return updateAuthor;
+            }
+            catch(err){
+                console.error("Error updating author:", error.message);
+                throw new Error("Failed to update author");
+            }
+        },
+        updateReview: async(_, {id, review})=>{
+            try{
+                const updateReview = await Review.findByIdAndUpdate(id, review, {new: true});
+                return updateReview;
+            }
+            catch(err){
+                console.error("Error updating review:", error.message);
+                throw new Error("Failed to update review");
+            }
         }
     }
 }
