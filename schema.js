@@ -25,9 +25,15 @@ export const typeDefs = `#graphql
         author(id: ID!): Author 
     }
     type Mutation{
+        # addGame is a mutation that will add a game to the database
         addGame(game: addGameInput!): Game
         addAuthor(author: addAuthorInput!): Author
         addReview(review: addReviewInput!): Review
+
+        # deleteGame is a mutation that will delete a game from the database
+        deleteGame(id: ID!): Game
+        deleteAuthor(id: ID!): Author
+        deleteReview(id: ID!): Review
     }
     input addGameInput{
         title: String!

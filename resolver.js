@@ -180,6 +180,36 @@ export const resolvers = {
                 console.error("Error creating review:", error);
                 throw new Error("Failed to create review");
             }
+        },
+        deleteGame: async(_, {id})=>{
+            try{
+                const deleteGame = await Game.findByIdAndDelete(id);
+                return deleteGame;
+            }
+            catch(err){
+                console.error("Error deleting game:", error.message);
+                throw new Error("Failed to delete game");
+            }
+        },
+        deleteAuthor: async(_, {id})=>{
+            try{
+                const deleteAuthor = await Author.findByIdAndDelete(id);
+                return deleteAuthor;
+            }
+            catch(err){
+                console.error("Error deleting author:", error.message);
+                throw new Error("Failed to delete author");
+            }
+        },
+        deleteReview: async(_, {id})=>{
+            try{
+                const deleteReview = await Review.findByIdAndDelete(id);
+                return deleteReview;
+            }
+            catch(err){
+                console.error("Error deleting review:", error.message);
+                throw new Error("Failed to delete review");
+            }
         }
     }
 }
