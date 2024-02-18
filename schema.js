@@ -7,8 +7,8 @@ export const typeDefs = `#graphql
     type Review{
         rating: Int!
         content: String!
-        gameID: ID!
-        author: ID!
+        game: Game!
+        author: Author!
     }
     type Author{
         name: String!

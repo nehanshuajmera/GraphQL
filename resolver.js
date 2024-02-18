@@ -37,11 +37,11 @@ export const resolvers = {
         },
         game: async (_, { id }) => {
             try {
-                if(!mongoose.Types.ObjectId.isValid(id)) {
+                if (!mongoose.Types.ObjectId.isValid(id)) {
                     throw new Error('Invalid Game ID');
                 }
                 const game = await Game.findById(id);
-                if(!game){
+                if (!game) {
                     throw new Error('Game not found');
                 }
                 return game;
@@ -53,11 +53,11 @@ export const resolvers = {
         },
         author: async (_, { id }) => {
             try {
-                if(!mongoose.Types.ObjectId.isValid(id)) {
+                if (!mongoose.Types.ObjectId.isValid(id)) {
                     throw new Error('Invalid Author ID');
                 }
                 const author = await Author.findById(id);
-                if(!author){
+                if (!author) {
                     throw new Error('Author not found');
                 }
                 return author;
@@ -69,11 +69,11 @@ export const resolvers = {
         },
         review: async (_, { id }) => {
             try {
-                if(!mongoose.Types.ObjectId.isValid(id)) {
+                if (!mongoose.Types.ObjectId.isValid(id)) {
                     throw new Error('Invalid Review ID');
                 }
                 const review = await Review.findById(id);
-                if(!review){
+                if (!review) {
                     throw new Error('Review not found');
                 }
                 return review;
@@ -81,6 +81,52 @@ export const resolvers = {
             catch (err) {
                 console.error("Error fetching review:", err.message);
                 throw new Error("Error fetching review");
+            }
+        }
+    },
+    Game: {
+        reviews: async (parent) => {
+            try {
+                const reviews = await Review.find({ gameId: parent.id });
+                return reviews;
+            }
+            catch (err) {
+                console.error("Error fetching reviews:", err.message);
+                throw new Error("Error fetching reviews");
+            }
+        }
+    },
+    Author: {
+        reviews: async (parent) => {
+            try {
+                const reviews = await Review.find({ authorId: parent.id });
+                return reviews;
+            }
+            catch (err) {
+                console.error("Error fetching reviews:", err.message);
+                throw new Error("Error fetching reviews");
+            }
+        }
+    },
+    Review: {
+        game: async (parent) => {
+            try {
+                const game = await Game.findById(parent.gameId);
+                return game;
+            }
+            catch (err) {
+                console.error("Error fetching game:", err.message);
+                throw new Error("Error fetching game");
+            }
+        },
+        author: async (parent) =>{
+            try {
+                const author = await Author.findById(parent.authorId);
+                return author;
+            }
+            catch (err) {
+                console.error("Error fetching author:", err.message);
+                throw new Error("Error fetching author");
             }
         }
     },
