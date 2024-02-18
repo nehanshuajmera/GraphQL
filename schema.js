@@ -1,24 +1,47 @@
 export const typeDefs = `#graphql
-    type: Game{
-        id: ID! # ! -- it shows that the field is required and it can't be null
+    type Game{
+        title: String!
+        platform: [String!]!
+        reviews: [Review!]
+    }
+    type Review{
+        rating: Int!
+        content: String!
+        gameID: ID!
+        author: ID!
+    }
+    type Author{
+        name: String!
+        verified: Boolean!
+        reviews: [Review!]
+    }
+    # type: Query is Universal and should be created in all the projects
+    type Query{
+        reviews: [Review] # these are representing the entry points
+        games: [Game]      # from where the client can access the data
+        authors: [Author]  # they request from the frontend.
+        review(id: ID!): Review  
+        game(id: ID!): Game  # these are single item entry points
+        author(id: ID!): Author 
+    }
+    type Mutation{
+        addGame(game: addGameInput!): Game
+        addAuthor(author: addAuthorInput!): Author
+        addReview(review: addReviewInput!): Review
+    }
+    input addGameInput{
         title: String!
         platform: [String!]!
     }
-    type: Review{
-        id: ID!
-        rating: Int!
-        content: String!
-    }
-    type: Author{
-        id: ID!
+    input addAuthorInput{
         name: String!
         verified: Boolean!
     }
-    # type: Query is Universal and should be created in all the projects
-    type: Query{
-        reviews: [Reviews] # these are representing the entry points
-        games: [Game]      # from where the client can access the data
-        authors: [Author]  # they request from the frontend.
+    input addReviewInput{
+        rating: Int!
+        content: String!
+        gameId: ID!
+        authorId: ID!
     }
 `
 

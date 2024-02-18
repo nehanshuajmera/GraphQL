@@ -1,12 +1,12 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const authorSchema = new Schema ({
-    id: {
-        type: id,
-        required: true,
-        unique: true
-    },
+    // id: {
+    //     type: Number,
+    //     required: true,
+    //     unique: true
+    // },
     name:{
         type: String,
         required: true
@@ -17,5 +17,4 @@ const authorSchema = new Schema ({
     }
 }, {timestamps:true});
 
-const Author = mongoose.model('Author', authorSchema);
-module.exports = Author;
+export const Author = mongoose.model('Author', authorSchema);

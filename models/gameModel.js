@@ -1,12 +1,12 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const gameSchema = new Schema({
-    id: {
-        type: id,
-        required: true,
-        unique: true
-    },
+    // id: {
+    //     type: Number,
+    //     required: true,
+    //     unique: true
+    // },
     title: {
         type: String,
         required: true
@@ -17,5 +17,4 @@ const gameSchema = new Schema({
     }
 }, { timestamps: true });
 
-const Game = mongoose.model('Game', gameSchema);
-module.exports = Game;
+export const Game = mongoose.model('Game', gameSchema);
