@@ -67,6 +67,3 @@ export const typeDefs = `#graphql
         content: String
     }
 `
-
-// types of dataTypes can be used are:
-// Int, String, Float, Boolean, ID
